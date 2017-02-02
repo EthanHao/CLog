@@ -26,6 +26,8 @@
 //the regulation of filename is using the prefix of LogLevle and plus the date of that day
 //the extension of all logs file is .log
 //and the log library is thread safety and well interfaced.
+
+//singleton pattern
 class Log
 {
 public:
@@ -35,6 +37,8 @@ public:
         LogWarnning,
         LogFatal,
     };
+private:
+    static constexpr Log* _instance = nullptr;
 private:
     static const std::string _debug;
     static const std::string _info ;
