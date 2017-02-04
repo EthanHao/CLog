@@ -14,77 +14,78 @@
 #ifndef LOG_H
 #define LOG_H
 
-#include "Exception.h"
+
 #include "Lock.h"
+#include "LogFile.h"
 #include <sys/types.h>
 #include <unistd.h>
-#include <map>
+#include <vector>
+#include <memory>
+namespace CLOG {
+
+    //this log class will generate some log files everyday
+    //each day we get a debug20170201.log , Info20170201.log, etc
+    //the regulation of filename is using the prefix of LogLevle and plus the date of that day
+    //the extension of all logs file is .log
+    //and the log library is thread safety and well interfaced.
+
+    //singleton pattern
+
+    class Log {
+    public:
+
+    private:
+        static Log* _instance;
+        static std::mutex _singleMutex;
+
+        //can not be constructed outside explicitly
+        Log() = default;
+
+        //can not be copy constructed
+        Log(const Log&) = delete;
+        //can not be copy assigned
+        Log& operator=(const Log&) = delete;
+
+        //No move constructor
+        Log(Log&&) = delete;
+
+        //No Move assignment
+        Log& operator=(Log&&) = delete;
+
+    
+    private:
+        std::string _fileDir = "";
+        std::string _processId;
+        std::atomic<bool> 
+        std::vector<std::unique_ptr<LogFile>> _vecFile;
+
+    public:
 
 
-//this log class will generate some log files everyday
-//each day we get a debug20170201.log , Info20170201.log, etc
-//the regulation of filename is using the prefix of LogLevle and plus the date of that day
-//the extension of all logs file is .log
-//and the log library is thread safety and well interfaced.
+        Log* GetInstance() {
+            //Double check
+            if (_instance == nullptr) {
+                //lock
+                std::lock_guard<std::mutex> llock(_singleMutex);
+                if (_instance == nullptr) {
+                    _instance = new Log();
+                    return _instance;
+                }
+            }
+            return _instance;
 
-//singleton pattern
-class Log
-{
-public:
-    enum LogLevel {
-        LogDebug = 0,
-        LogInfo,
-        LogWarnning,
-        LogFatal,
+        }
+
+        //Initialize this log with a existing directory path,
+        //this must be called before you want to log something
+       
+
+    private:
+       
+
+
     };
-private:
-    static constexpr Log* _instance = nullptr;
-private:
-    static const std::string _debug;
-    static const std::string _info ;
-    static const std::string _warn;
-    static const std::string _fatal;
-    static const std::string _other;
-private:
-    std::string _fileDir = "";
-    std::string _processId;
-    Lock* _lock = nullptr;
-    std::map<std::string,FILE*>  _mapFile;
-    
-public:
-    Log(const std::string & nfileDir,
-            Lock* nplock )throw(FileNotExistingException&,FileNotEditableException&) :
-        _fileDir(nfileDir),
-        _lock(nplock) {     
-            _processId = "" + getpid();
-            if(!access(_fileDir.c_str(), F_OK ))
-                throw FileNotExistingException(_fileDir);
-            if(!access(_fileDir.c_str(), W_OK ))
-                throw FileNotEditableException(_fileDir);
-        }
-    ~Log(){
-        for(auto & kv :_mapFile )
-            fclose(kv.second);
-    }
-    
-    static inline const std::string& LogLevelToString(const LogLevel & nLogLevel) 
-    {
-        switch(nLogLevel){
-            case LogDebug : return _debug;
-            case LogInfo : return _info;
-            case LogWarnning : return _warn;
-            case LogFatal : return _fatal;
-            default : return _other;
-        }
-    }
-   
-    void write(const LogLevel& nLogLevel,
-        const char *format,
-        va_list args) noexcept;
-   
-    
-};
 
-
+}
 #endif /* LOG_H */
 

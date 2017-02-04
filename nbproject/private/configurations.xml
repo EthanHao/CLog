@@ -44,10 +44,11 @@ Contributor(s):
       <df name="include">
         <in>Exception.h</in>
         <in>Lock.h</in>
-        <in>LogMacro.h</in>
+        <in>LogFile.h</in>
         <in>log.h</in>
       </df>
       <df name="src">
+        <in>LogFile.cpp</in>
         <in>log.cpp</in>
       </df>
     </df>

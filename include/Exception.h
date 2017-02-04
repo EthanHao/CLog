@@ -15,44 +15,56 @@
 #define EXCEPTION_H
 #include <string>
 
-class FileException : public std::exception
-{
-public:
-  FileException(const std::string& nfilepath):_filepath(nfilepath){}
-  
-  std::string filePath() const {return _filepath;}
-  // overriden what() method from exception class
-  const char* what() const throw() { 
-      std::string ret = "Open File " + _filepath ;
-      return ret.c_str();
-  }
- 
- private:
-  const std::string _filepath; 
-};
+namespace CLOG {
 
-class FileNotExistingException : public FileException
-{
-  public:
-   FileNotExistingException(const std::string& nfilepath):FileException(nfilepath){}
-  // overriden what() method from exception class
-  const char* what() const throw() { 
-      std::string ret =  "File Not Existing " + filePath() ;
-      return ret.c_str();
-  }
-};
+    class FileException : public std::exception {
+    public:
 
+        FileException(const std::string& nsMsg) : _errorMsg(nsMsg) {
+        }
+        // overriden what() method from exception class
 
-class FileNotEditableException : public FileException
-{
-  public:
-   FileNotEditableException(const std::string& nfilepath):FileException(nfilepath){}
-  // overriden what() method from exception class
-  const char* what() const throw() { 
-      std::string ret =  "File Not Editable " + filePath() ;
-      return ret.c_str();
-  }
-};
+        const char* what() const throw () {
+            return _errorMsg.c_str();
+        }
+    private:
+        const std::string _errorMsg;
+     
+    };
 
+    class FileNotExistingException : public FileException {
+    public:
+
+        FileNotExistingException(const std::string& nfilepath) : FileException(nfilepath + " File Not Existing") {
+        }
+     
+    };
+
+    class FileNotEditableException : public FileException {
+    public:
+
+        FileNotEditableException(const std::string& nfilepath) : FileException(nfilepath + " File Not Editable") {
+        }
+   
+    };
+
+    class FileOpenFailedException : public FileException {
+    public:
+
+        FileOpenFailedException(const std::string& nfilepath) : FileException(nfilepath + " File Open Failed") {
+        }
+       
+    };
+
+    class FileWriteFailedException : public FileException {
+    public:
+
+        FileWriteFailedException(const std::string& nfilepath) : FileException(nfilepath+ " File Write Failed") {
+        }
+      
+
+    };
+
+}
 #endif /* EXCEPTION_H */
 

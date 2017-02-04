@@ -15,6 +15,9 @@
 #define LOCK_H
 
 #include <mutex>
+
+namespace CLOG{
+    
 class Lock
 {
 public:
@@ -31,5 +34,8 @@ public:
     virtual void unlock() {_mutex.unlock();}
 };
 
+
+
+}//namespace
 #endif /* LOCK_H */
 
