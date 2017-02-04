@@ -15,12 +15,13 @@
 #define LOG_H
 
 
-#include "Lock.h"
 #include "LogFile.h"
 #include <sys/types.h>
 #include <unistd.h>
 #include <vector>
 #include <memory>
+#include <atomic>
+#include <mutex>
 namespace CLOG {
 
     //this log class will generate some log files everyday
@@ -56,7 +57,8 @@ namespace CLOG {
     private:
         std::string _fileDir = "";
         std::string _processId;
-        std::atomic<bool> 
+        std::mutex _initMutex;
+        std::atomic<bool> _Initilized ;
         std::vector<std::unique_ptr<LogFile>> _vecFile;
 
     public:
@@ -75,15 +77,41 @@ namespace CLOG {
             return _instance;
 
         }
+        
+        //Init
+        inline void Init(const std::string & nsDir)
+        throw (FileNotExistingException&,
+                FileNotEditableException&,
+                std::invalid_argument&) {
+            if (false == _Initilized)
+                return;
+            //Lock
+            std::lock_guard<std::mutex> llock(_initMutex);
+            
+            //Add the LogFile ptr to the vector
+            for (int i = LogFile::LogLevel::LogDebug; i < LogFile::LogLevel::LogFatal; i++) {
+                std::unique_ptr<LogFile> lp1(new LogFile(nsDir, static_cast<LogFile::LogLevel>(i)));
+                _vecFile.push_back(std::move(lp1));
+            }
+            _Initilized = true;
+        }
 
-        //Initialize this log with a existing directory path,
-        //this must be called before you want to log something
-       
+        //Log Debug
+        inline bool LogDebug(const LogFile::LogLevel& nLogLevel,
+                 const char *format,
+                va_list args) noexcept{
+            bool lbRet = true;
+            try{
+                _vecFile[nLogLevel]->write(format,args);
+            }
+            catch(std::exception e){
+                lbRet = false;
+            }
+            return lbRet;
+            
+        }
 
-    private:
-       
-
-
+      
     };
 
 }

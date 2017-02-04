@@ -16,11 +16,11 @@
 
 
 #include "Exception.h"
-#include "Lock.h"
 #include <sys/types.h>
 #include <unistd.h>
 #include <vector>
 #include <tuple>
+#include <mutex>
 namespace CLOG {
 
     //this log class will generate some log files everyday
@@ -130,7 +130,7 @@ namespace CLOG {
             }
         }
 
-    private:
+    
         void write( const char *format,
                 va_list args) throw(FileOpenFailedException&,FileWriteFailedException&,std::invalid_argument);
 

@@ -43,7 +43,6 @@ Contributor(s):
     <df root="." name="0">
       <df name="include">
         <in>Exception.h</in>
-        <in>Lock.h</in>
         <in>LogFile.h</in>
         <in>log.h</in>
       </df>
