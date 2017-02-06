@@ -2,7 +2,10 @@
 A very useful, and thread-safety log library based on linux. Using c++ 11 to implement.
 
 # How to use
-If using CMAKE you can write you CMake content like this
+1. Installing this library using 
+>sudo make install 
+
+2. Linking the library If using CMAKE you can write you CMake content like this
 >
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")  
 ADD_EXECUTABLE(test1 newsimpletest.cpp)  
