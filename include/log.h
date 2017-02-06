@@ -14,7 +14,8 @@
 #ifndef LOG_H
 #define LOG_H
 
-
+#include <cstdio>
+#include <stdarg.h>
 #include "LogFile.h"
 #include <sys/types.h>
 #include <unistd.h>
@@ -64,7 +65,7 @@ namespace CLOG {
     public:
 
 
-        Log* GetInstance() {
+        static Log* GetInstance() {
             //Double check
             if (_instance == nullptr) {
                 //lock
@@ -83,13 +84,13 @@ namespace CLOG {
         throw (FileNotExistingException&,
                 FileNotEditableException&,
                 std::invalid_argument&) {
-            if (false == _Initilized)
+            if (false != _Initilized)
                 return;
             //Lock
             std::lock_guard<std::mutex> llock(_initMutex);
             
             //Add the LogFile ptr to the vector
-            for (int i = LogFile::LogLevel::LogDebug; i < LogFile::LogLevel::LogFatal; i++) {
+            for (int i = LogFile::LogLevel::LogDebug; i <= LogFile::LogLevel::LogFatal; i++) {
                 std::unique_ptr<LogFile> lp1(new LogFile(nsDir, static_cast<LogFile::LogLevel>(i)));
                 _vecFile.push_back(std::move(lp1));
             }
@@ -97,12 +98,19 @@ namespace CLOG {
         }
 
         //Log Debug
-        inline bool LogDebug(const LogFile::LogLevel& nLogLevel,
+        inline bool Logging(const LogFile::LogLevel& nLogLevel,
                  const char *format,
-                va_list args) noexcept{
+                 ...) noexcept{
+            
+            if(_Initilized == false)
+                return false;
             bool lbRet = true;
             try{
+                va_list args;
+                va_start(args, format);
                 _vecFile[nLogLevel]->write(format,args);
+                va_end(args);
+               
             }
             catch(std::exception e){
                 lbRet = false;

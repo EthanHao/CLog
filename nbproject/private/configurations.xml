@@ -50,6 +50,10 @@ Contributor(s):
         <in>LogFile.cpp</in>
         <in>log.cpp</in>
       </df>
+      <df name="tests">
+        <in>newsimpletest.cpp</in>
+        <in>newsimpletest1.cpp</in>
+      </df>
     </df>
   </logicalFolder>
   <projectmakefile>build/Debug/Makefile</projectmakefile>
@@ -77,8 +81,12 @@ Contributor(s):
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
+            <option name="debug_command"
+                    value="/home/ethan/NetBeansProjects/CLog/build/Debug/tests/test1"/>
           </DebugOptions>
         </gdb_options>
         <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>

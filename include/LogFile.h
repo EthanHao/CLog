@@ -50,18 +50,30 @@ namespace CLOG {
         static const std::string _other;
         
     private:
+        //the directory of the file
         std::string _fileDir = "";
-        std::string _processId;
+        //the level of Log
         LogLevel _logLevel = LogDebug;
+        
+        //the prefix name associated the level of log
         std::string _prefixFileName = "";
+        
+        //record the current file path of log file
         std::string _currentFilePath = "";
+        
+        //record the current time of log to make a fast comparison 
         struct tm _currentTM;
+        
+        //the internal file handle of the log 
         FILE *  _fileHandle = nullptr;
+        
+        //the mutex object of log, for thread safety
         std::mutex _mutex;
 
     public:
 
-         //can not be constructed outside explicitly
+         
+        //Construct the LogFile and check the validation of the directory
         LogFile(const std::string& nsDir,const LogLevel& nLogLevel) 
                 throw (FileNotExistingException&,
                 FileNotEditableException&,
@@ -70,13 +82,13 @@ namespace CLOG {
             if (nsDir.empty())
                 throw std::invalid_argument("Directory is null");
             
-            _logLevel = nLogLevel;
-            _processId = "" + getpid();
+            _logLevel = nLogLevel;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+            _fileDir = nsDir;
             _prefixFileName = LogLevelToString(_logLevel);
-            if (!access(_fileDir.c_str(), F_OK))
+            if (0 != access(_fileDir.c_str(), F_OK))
                 throw FileNotExistingException(_fileDir);
             
-            if (!access(_fileDir.c_str(), W_OK))
+            if (0 != access(_fileDir.c_str(), W_OK))
                 throw FileNotEditableException(_fileDir);
         }
 
@@ -103,20 +115,7 @@ namespace CLOG {
         }
 
        
-        //Initialize this log with a existing directory path,
-        //this must be called before you want to log something
-        void Init(const std::string& nsDir)
-        throw (FileNotExistingException&,
-                FileNotEditableException&,
-                std::invalid_argument&) {
-            if (nsDir.empty())
-                throw std::invalid_argument("Directory is null");
-            _processId = "" + getpid();
-            if (!access(_fileDir.c_str(), F_OK))
-                throw FileNotExistingException(_fileDir);
-            if (!access(_fileDir.c_str(), W_OK))
-                throw FileNotEditableException(_fileDir);
-        }
+      
 
         //Convert the debug level to a prefix string of the log file name
         //this function will be called very frequently. so use "inline" keyword and return a const string reference
@@ -131,6 +130,7 @@ namespace CLOG {
         }
 
     
+        //Append the content to the log file
         void write( const char *format,
                 va_list args) throw(FileOpenFailedException&,FileWriteFailedException&,std::invalid_argument);
 

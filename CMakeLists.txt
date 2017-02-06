@@ -1,20 +1,16 @@
 project (CLOG)
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+cmake_minimum_required(VERSION 3.5)
 
-#head file path
-INCLUDE_DIRECTORIES(./include)
-#source directory
-AUX_SOURCE_DIRECTORY(src CPP_FILES)
+add_subdirectory(src)
+add_subdirectory(include)
+
+add_subdirectory(tests)
 
 
-#print the direcories
-MESSAGE(STATUS "CPP_FILES: " ${CPP_FILES})
-MESSAGE(STATUS "Binary dir: " ${PROJECT_BINARY_DIR})
-MESSAGE(STATUS "Source dir: " ${PROJECT_SOURCE_DIR})
+ENABLE_TESTING()
+ADD_TEST(T1 ${PROJECT_BINARY_DIR}/tests/test1)
+ADD_TEST(T2 ${PROJECT_BINARY_DIR}/tests/test2)
 
-add_Library (CLOG STATIC ${CPP_FILES})
+add_custom_target(build-tests  DEPENDS ${PROJECT_BINARY_DIR}/tests/test1 ${PROJECT_BINARY_DIR}/tests/test2)
 
-TARGET_LINK_LIBRARIES( CLOG
-pthread
-)
