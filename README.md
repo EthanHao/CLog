@@ -24,3 +24,7 @@ for (int i = 0; i < 10; i++)
 for (int i = 0; i < 10; i++)
      CLOG::Log::GetInstance()->Logging(CLOG::LogFile::LogLevel::LogFatal, "try to output fatal %d", i)
 ```
+
+#Result
+This library will generate log files every day for each log level.
+![](result.png)
