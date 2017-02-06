@@ -124,7 +124,6 @@ Contributor(s):
         <ccTool>
           <incDir>
             <pElem>tests</pElem>
-            <pElem>build/Debug/tests</pElem>
           </incDir>
         </ccTool>
       </folder>

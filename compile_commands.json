@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/ethan/NetBeansProjects/CLog/src",
+  "command": "/usr/bin/g++    -I/home/ethan/NetBeansProjects/CLog/include   -std=c++11 -g   -o CMakeFiles/CLOG.dir/log.cpp.o -c /home/ethan/NetBeansProjects/CLog/src/log.cpp",
+  "file": "/home/ethan/NetBeansProjects/CLog/src/log.cpp"
+},
+{
+  "directory": "/home/ethan/NetBeansProjects/CLog/src",
+  "command": "/usr/bin/g++    -I/home/ethan/NetBeansProjects/CLog/include   -std=c++11 -g   -o CMakeFiles/CLOG.dir/LogFile.cpp.o -c /home/ethan/NetBeansProjects/CLog/src/LogFile.cpp",
+  "file": "/home/ethan/NetBeansProjects/CLog/src/LogFile.cpp"
+},
+{
+  "directory": "/home/ethan/NetBeansProjects/CLog/tests",
+  "command": "/usr/bin/g++      -std=c++11 -g   -o CMakeFiles/test1.dir/newsimpletest.cpp.o -c /home/ethan/NetBeansProjects/CLog/tests/newsimpletest.cpp",
+  "file": "/home/ethan/NetBeansProjects/CLog/tests/newsimpletest.cpp"
+},
+{
+  "directory": "/home/ethan/NetBeansProjects/CLog/tests",
+  "command": "/usr/bin/g++      -std=c++11 -g   -o CMakeFiles/test2.dir/newsimpletest1.cpp.o -c /home/ethan/NetBeansProjects/CLog/tests/newsimpletest1.cpp",
+  "file": "/home/ethan/NetBeansProjects/CLog/tests/newsimpletest1.cpp"
+}
+]

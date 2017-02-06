@@ -41,16 +41,44 @@ Contributor(s):
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
+      <df name="CMakeFiles">
+        <df name="3.5.1">
+          <df name="CompilerIdC">
+            <in>CMakeCCompilerId.c</in>
+          </df>
+          <df name="CompilerIdCXX">
+            <in>CMakeCXXCompilerId.cpp</in>
+          </df>
+        </df>
+        <df name="build-tests.dir">
+        </df>
+        <df name="CMakeTmp">
+        </df>
+        <in>feature_tests.c</in>
+        <in>feature_tests.cxx</in>
+      </df>
       <df name="include">
+        <df name="CMakeFiles">
+        </df>
         <in>Exception.h</in>
         <in>LogFile.h</in>
         <in>log.h</in>
       </df>
       <df name="src">
+        <df name="CMakeFiles">
+          <df name="CLOG.dir">
+          </df>
+        </df>
         <in>LogFile.cpp</in>
         <in>log.cpp</in>
       </df>
       <df name="tests">
+        <df name="CMakeFiles">
+          <df name="test1.dir">
+          </df>
+          <df name="test2.dir">
+          </df>
+        </df>
         <in>newsimpletest.cpp</in>
         <in>newsimpletest1.cpp</in>
       </df>

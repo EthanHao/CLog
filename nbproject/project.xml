@@ -43,8 +43,8 @@ Contributor(s):
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>CLog</name>
-            <c-extensions/>
-            <cpp-extensions>cpp</cpp-extensions>
+            <c-extensions>c</c-extensions>
+            <cpp-extensions>cpp,cxx</cpp-extensions>
             <header-extensions>h</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <sourceRootList>
