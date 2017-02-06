@@ -1,7 +1,7 @@
 # CLog
 A very useful, and thread-safety log library based on linux. Using c++ 11 to implement.
 
-# how to use
+# How to use
 ```c++
 CLOG::Log::GetInstance()->Init("/home/ethan/log");
 for (int i = 0; i < 10; i++)
