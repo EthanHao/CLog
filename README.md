@@ -11,8 +11,8 @@ CLOG
 )
 
 #Sample Code
-1 .Firstly including #include "log.h"
-2 .Secondly writing source code like below
+1 .Firstly including #include "log.h"  
+2 .Secondly writing source code like below  
 ```c++
 CLOG::Log::GetInstance()->Init("/home/ethan/log");
 for (int i = 0; i < 10; i++)
