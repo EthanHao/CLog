@@ -4,4 +4,22 @@
         <activeConfTypeElem>0</activeConfTypeElem>
         <activeConfIndexElem>0</activeConfIndexElem>
     </data>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/ethan/NetBeansProjects/CLog/CMakeLists.txt</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/src/LogFile.cpp</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/include/log.h</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/tests/CMakeLists.txt</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/tests/newsimpletest1.cpp</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/src/CMakeLists.txt</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/include/CMakeLists.txt</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/build/Debug/Makefile</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/src/log.cpp</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/tests/newsimpletest.cpp</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/include/Exception.h</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/include/LogFile.h</file>
+            <file>file:/home/ethan/NetBeansProjects/CLog/.gitignore</file>
+        </group>
+    </open-files>
 </project-private>

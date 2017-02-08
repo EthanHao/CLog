@@ -1,1 +1,0 @@
-/usr/bin/g++    -std=c++11 -g   CMakeFiles/test2.dir/newsimpletest1.cpp.o  -o test2 ../src/libCLOG.a -lpthread 
